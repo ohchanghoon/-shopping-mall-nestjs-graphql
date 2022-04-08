@@ -7,6 +7,7 @@ import { ProductModule } from './product/product.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getConnectionOptions } from 'typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver } from '@nestjs/apollo';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { GraphQLModule } from '@nestjs/graphql';
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: true,
+      driver: ApolloDriver,
       installSubscriptionHandlers: true,
       context: (context) => context,
     }),
