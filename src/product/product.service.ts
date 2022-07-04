@@ -6,10 +6,13 @@ import { ProductCreateInput, ProductModel } from './product.model';
 
 @Injectable()
 export class ProductService {
+  #productRepository: Repository<ProductEntity>;
   constructor(
     @InjectRepository(ProductEntity)
     private productRepository: Repository<ProductEntity>,
-  ) {}
+  ) {
+    this.#productRepository = productRepository;
+  }
 
   /** 전체 조회 */
   async findAll(): Promise<ProductModel[]> {
