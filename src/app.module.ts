@@ -8,6 +8,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { getConnectionOptions } from 'typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
+import { UserModule } from './user/user.module';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Module({
   imports: [
@@ -25,8 +28,9 @@ import { ApolloDriver } from '@nestjs/apollo';
       context: (context) => context,
     }),
     ProductModule,
+    UserModule,
   ],
   controllers: [AppController],
-  providers: [AppService, ProductResolver, ProductService],
+  providers: [AppService],
 })
 export class AppModule {}
