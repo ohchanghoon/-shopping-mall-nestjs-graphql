@@ -1,13 +1,11 @@
 import {
   CreateDateColumn,
   DeleteDateColumn,
-  Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'defualtEntity' })
-export abstract class defualtEntity {
+export abstract class DefaultEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -20,6 +18,6 @@ export abstract class defualtEntity {
   updatedAt: Date;
 
   /** 데이터 삭제일 */
-  @DeleteDateColumn({ type: 'timestamptz' })
+  @DeleteDateColumn({ type: 'timestamptz', nullable: true })
   deletedAt: Date;
 }
