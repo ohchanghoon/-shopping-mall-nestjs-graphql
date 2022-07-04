@@ -9,7 +9,7 @@ export class UserEntity extends DefaultEntity {
 
   /** 권한 */
   @Column()
-  role: string;
+  role?: string;
 
   /** 이메일 */
   @Column()
