@@ -39,7 +39,7 @@ export class ProductCreateInput {
   @Field((type) => Number, { description: '배송비', defaultValue: 2500 })
   deliveryFee: number;
 
-  @Field((type) => Number, { description: '상품 상태' })
+  @Field((type) => ProductStateEnum, { description: '상품 상태' })
   state: ProductStateEnum;
 }
 
@@ -72,6 +72,6 @@ export class ProductModel extends DefaultModel {
   @Field((type) => Number, { description: '배송비' })
   deliveryFee: number;
 
-  @Field((type) => Number, { description: '상품 상태' })
+  @Field((type) => ProductStateEnum, { description: '상품 상태' })
   state: ProductStateEnum;
 }
