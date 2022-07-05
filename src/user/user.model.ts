@@ -1,5 +1,5 @@
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
-import { IsEmail, IsPhoneNumber, MaxLength, MinLength } from 'class-validator';
+import { IsEmail, MaxLength, MinLength } from 'class-validator';
 import { DefaultModel } from 'src/common/default/default.model';
 import { UserRoleEnum } from './user.enum';
 
