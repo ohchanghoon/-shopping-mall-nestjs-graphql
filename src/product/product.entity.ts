@@ -6,7 +6,7 @@ import {
   ProductStateEnum,
 } from './product.enum';
 
-@Entity({ name: 'products' })
+@Entity()
 export class ProductEntity extends DefaultEntity {
   /** 상품명 */
   @Column()

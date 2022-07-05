@@ -1,7 +1,7 @@
 import { DefaultEntity } from 'src/common/default/default.entity';
 import { Column, Entity } from 'typeorm';
 
-@Entity({ name: 'users' })
+@Entity()
 export class UserEntity extends DefaultEntity {
   /** 이름 */
   @Column()
