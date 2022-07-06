@@ -1,5 +1,10 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { createOrderFormInput, OrderFormModel } from './orderform.model';
+import {
+  createOrderFormInput,
+  forceUpdateOrderForm,
+  forceUpdateOrderFormInput,
+  OrderFormModel,
+} from './orderform.model';
 import { OrderformService } from './orderform.service';
 
 @Resolver()
@@ -10,8 +15,16 @@ export class OrderformResolver {
   }
 
   @Mutation((returns) => OrderFormModel)
-  // @Mutation((returns) => String)
   async createOrderForm(@Args('data') data: createOrderFormInput) {
     return await this.#orderFormService.create(data);
+  }
+
+  @Mutation((returns) => forceUpdateOrderForm)
+  // @UseGuards(JwtGuard)
+  // @Roles(UserRole.ADMIN)
+  async updateOrderFormByAdmin(
+    @Args('data') data: forceUpdateOrderFormInput,
+  ): Promise<forceUpdateOrderForm> {
+    return await this.#orderFormService.updateForce(data);
   }
 }

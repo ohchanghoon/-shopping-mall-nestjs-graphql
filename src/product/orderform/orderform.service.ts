@@ -5,7 +5,7 @@ import { ProductEntity } from '../product.entity';
 import { ProductStateEnum } from '../product.enum';
 import { ProductService } from '../product.service';
 import { OrderFormEntity } from './orderform.entity';
-import { createOrderFormInput } from './orderform.model';
+import { createOrderFormInput, forceUpdateOrderForm } from './orderform.model';
 
 @Injectable()
 export class OrderformService {
@@ -55,5 +55,12 @@ export class OrderformService {
 
       throw err;
     }
+  }
+
+  async updateForce(data: forceUpdateOrderForm): Promise<forceUpdateOrderForm> {
+    await this.#orderFormRepository.update(data.id, { state: data.state });
+
+    const result = await this.#orderFormRepository.findOne(data.id);
+    return { id: result.id, state: result.state };
   }
 }

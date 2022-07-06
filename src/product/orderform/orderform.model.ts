@@ -1,4 +1,6 @@
-import { Field, InputType, ObjectType } from '@nestjs/graphql';
+import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
+import { UserEntity } from 'src/user/user.entity';
+import { ProductEntity } from '../product.entity';
 import { OrderFormStateEnum } from './orderform.enum';
 
 @InputType()
@@ -47,4 +49,39 @@ export class OrderFormModel {
 
   @Field((type) => String, { description: '주문자' })
   userId: string;
+}
+
+@ObjectType()
+export class forceUpdateOrderForm {
+  @Field((type) => ID, { description: '주문서 ID' })
+  id: string;
+
+  @Field((type) => OrderFormStateEnum, { description: '주문서 상태' })
+  state: OrderFormStateEnum;
+}
+@InputType()
+export class forceUpdateOrderFormInput {
+  @Field((type) => ID, { description: '주문서 ID' })
+  id: string;
+
+  @Field((type) => OrderFormStateEnum, { description: '주문서 상태' })
+  state: OrderFormStateEnum;
+}
+
+@ObjectType()
+export class tt {
+  @Field((type) => OrderFormStateEnum, { description: '주문서 상태' })
+  user: UserEntity;
+
+  @Field((type) => OrderFormStateEnum, { description: '주문서 상태' })
+  product: ProductEntity;
+
+  @Field((type) => OrderFormStateEnum, { description: '주문서 상태' })
+  orderCount?: number;
+
+  @Field((type) => OrderFormStateEnum, { description: '주문서 상태' })
+  price: number;
+
+  @Field((type) => OrderFormStateEnum, { description: '주문서 상태' })
+  state: OrderFormStateEnum;
 }
