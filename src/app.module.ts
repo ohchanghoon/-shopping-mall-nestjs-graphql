@@ -9,7 +9,10 @@ import { getConnectionOptions } from 'typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
 import { UserModule } from './user/user.module';
+import { TaskSchedulingModule } from './task-scheduling/task-scheduling.module';
 import * as dotenv from 'dotenv';
+import { ScheduleModule } from '@nestjs/schedule';
+import { DeliveryModule } from './delivery/delivery.module';
 dotenv.config();
 
 @Module({
@@ -29,6 +32,8 @@ dotenv.config();
     }),
     ProductModule,
     UserModule,
+    TaskSchedulingModule,
+    DeliveryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
