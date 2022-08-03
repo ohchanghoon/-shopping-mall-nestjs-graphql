@@ -9,8 +9,8 @@ export class DeliveryResolver {
     this.#deliveryService = deliveryService;
   }
 
-  @Mutation()
-  async createDelivery(@Args('data') data: CreateDeliveryInput) {
-    await this.#deliveryService.create(data);
-  }
+  // @Mutation()
+  // async createDelivery(@Args('data') data: CreateDeliveryInput) {
+  //   return await this.#deliveryService.create(data);
+  // }
 }

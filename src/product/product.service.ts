@@ -16,23 +16,23 @@ export class ProductService {
 
   /** 전체 조회 */
   async findAll(): Promise<ProductModel[]> {
-    return await this.productRepository.find();
+    return await this.#productRepository.find();
   }
 
   /** 상품 단일 조회 */
   async findOne(id: string): Promise<ProductModel> {
-    return await this.productRepository.findOne(id);
+    return await this.#productRepository.findOne(id);
   }
 
   /** 상품 복수 조회 */
   async findMany(ids: string[]) {
-    return await this.productRepository.find({ where: ids });
+    return await this.#productRepository.find({ where: ids });
   }
 
   /** 상품 단일 등록 */
   async createProduct(data: ProductCreateInput): Promise<ProductModel> {
-    const product = await this.productRepository.create(data);
-    return this.productRepository.save(product);
+    const product = await this.#productRepository.create(data);
+    return this.#productRepository.save(product);
   }
 
   /** 상품 수정 */
@@ -41,13 +41,13 @@ export class ProductService {
     data: ProductCreateInput,
   ): Promise<ProductModel> {
     const product = await this.findOne(id);
-    return this.productRepository.save({ id: product.id, data });
+    return this.#productRepository.save({ id: product.id, data });
   }
 
   /** 상품 단일 삭제 */
   async deleteOne(id: string): Promise<ProductModel> {
     const product = this.findOne(id);
-    await this.productRepository.delete(id);
+    await this.#productRepository.delete(id);
     return product;
   }
 
