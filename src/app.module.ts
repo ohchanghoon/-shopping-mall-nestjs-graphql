@@ -13,6 +13,7 @@ import { TaskSchedulingModule } from './task-scheduling/task-scheduling.module';
 import * as dotenv from 'dotenv';
 import { ScheduleModule } from '@nestjs/schedule';
 import { DeliveryModule } from './delivery/delivery.module';
+import { FileModule } from './file/file.module';
 dotenv.config();
 
 @Module({
@@ -34,6 +35,7 @@ dotenv.config();
     UserModule,
     TaskSchedulingModule,
     DeliveryModule,
+    FileModule,
   ],
   controllers: [AppController],
   providers: [AppService],
