@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProductResolver } from './product/product.resolver';
@@ -18,6 +18,7 @@ dotenv.config();
 
 @Module({
   imports: [
+    CacheModule.register(),
     TypeOrmModule.forRootAsync({
       useFactory: async () => {
         return Object.assign(await getConnectionOptions(), {
