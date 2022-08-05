@@ -1,8 +1,6 @@
 import { CacheModule, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ProductResolver } from './product/product.resolver';
-import { ProductService } from './product/product.service';
 import { ProductModule } from './product/product.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getConnectionOptions } from 'typeorm';
@@ -11,14 +9,19 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { UserModule } from './user/user.module';
 import { TaskSchedulingModule } from './task-scheduling/task-scheduling.module';
 import * as dotenv from 'dotenv';
-import { ScheduleModule } from '@nestjs/schedule';
+import * as redisStore from 'cache-manager-ioredis';
 import { DeliveryModule } from './delivery/delivery.module';
 import { FileModule } from './file/file.module';
+
 dotenv.config();
 
 @Module({
   imports: [
-    CacheModule.register(),
+    CacheModule.register({
+      store: redisStore,
+      host: 'localhost',
+      port: 6379,
+    }),
     TypeOrmModule.forRootAsync({
       useFactory: async () => {
         return Object.assign(await getConnectionOptions(), {
